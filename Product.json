@@ -1,0 +1,19 @@
+{
+  "products": [
+    {
+      "Code": 1,
+      "productName": "Cookies",
+      "productPrice": 25
+    },
+    {
+      "Code": 2,
+      "productName": "ColdDrink",
+      "productPrice": 80
+    },
+    {
+      "Code": 3,
+      "productName": "Eggs",
+      "productPrice": 30
+    }
+  ]
+}
