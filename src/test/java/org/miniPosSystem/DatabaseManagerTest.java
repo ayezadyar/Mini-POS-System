@@ -60,6 +60,7 @@ public class DatabaseManagerTest
     fixture.whenWrongTenderCodeHasBeenPassedInAMethod(5);
     fixture.thenResultShouldBeZero(0);
   }
+
   private static class Fixture
   {
     private DatabaseManager databaseManagerTestClass = new DatabaseManager();
@@ -71,18 +72,19 @@ public class DatabaseManagerTest
 
     public void givenProductDataHasBeenInitialized()
     {
-      productsMap = databaseManagerTestClass.loadDataFromJson("./Product.json","products");
+      productsMap = databaseManagerTestClass.loadDataFromJson("./Product.json", "products");
     }
 
     public void givenTenderDataHasBeenInitialized()
     {
-      tendersMap = databaseManagerTestClass.loadDataFromJson("./Tender.json","tenders");
+      tendersMap = databaseManagerTestClass.loadDataFromJson("./Tender.json", "tenders");
     }
 
     public void whenProductCodeHasBeenPassedInAMethod(int productCode)
     {
       productsJson = productsMap.get(productCode);
     }
+
     public void whenWrongProductCodeHasBeenPassedInAMethod(int productCode)
     {
       productsJson = productsMap.get(productCode);
@@ -100,9 +102,11 @@ public class DatabaseManagerTest
 
     public void thenResultShouldBeZero(double zero)
     {
-      if(productsJson == null || tendersJson == null){
+      if (productsJson == null || tendersJson == null)
+      {
         System.out.println("No Data loaded");
-      assertEquals(zero, 0);}
+        assertEquals(zero, 0);
+      }
 
     }
 

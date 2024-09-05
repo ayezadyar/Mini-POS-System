@@ -1,0 +1,30 @@
+{
+  "promotions": [
+    {
+      "Code" : 1,
+      "promotionType" : "percentage",
+      "triggerQuantity": 5,
+      "discount" : 10
+    },
+    {
+      "Code" : 2,
+      "promotionType" : "percentage",
+      "triggerQuantity": 10,
+      "discount" : 20
+    },
+    {
+      "Code" : 3,
+      "promotionType" : "value",
+      "triggerQuantity": 5,
+      "discount" : 50
+    },
+    {
+
+      "Code" : 4,
+      "promotionType" : "value",
+      "triggerQuantity": 10,
+      "discount" : 100
+
+    }
+  ]
+}

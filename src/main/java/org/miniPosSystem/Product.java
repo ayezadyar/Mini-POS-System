@@ -16,12 +16,18 @@ public class Product
 
   public Product(int productCode)
   {
-    if(checkProductCode(productCode)){
+    if (checkProductCode(productCode))
+    {
       this.productCode = productCode;
     }
   }
-  public boolean checkProductCode(int productCode){
-    if(productsMap.get(productCode) == null) return false;
+
+  public boolean checkProductCode(int productCode)
+  {
+    if (productsMap.get(productCode) == null)
+    {
+      return false;
+    }
     return true;
   }
 
@@ -42,10 +48,12 @@ public class Product
   }
 
 
-  public String getProductName(int productCode)
+  public String getProductName()
   {
     this.productsJson = productJson(productCode);
-
+    if(productsJson == null){
+      return null;
+    }
     this.productName = this.productsJson.getString("productName");
     return productName;
   }
@@ -59,7 +67,10 @@ public class Product
   public double getProductPrice(int productCode)
   {
     this.productsJson = productJson(productCode);
-    if(this.productsJson == null)return 0;
+    if (this.productsJson == null)
+    {
+      return 0;
+    }
 
     this.productPrice = this.productsJson.getDouble("productPrice");
     return productPrice;
@@ -67,7 +78,8 @@ public class Product
 
   public JSONObject productJson(int productCode)
   {
-    if(productsMap.containsKey(productCode)){
+    if (productsMap.containsKey(productCode))
+    {
       return productsMap.get(productCode);
     }
     return null;
