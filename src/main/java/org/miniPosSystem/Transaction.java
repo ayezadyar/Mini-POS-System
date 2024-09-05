@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.event.Level;
 
 public class Transaction
 {
@@ -65,7 +64,11 @@ public class Transaction
     lineItem.setProduct(new Product(productCode));
     lineItem.setQuantity(quantity);
     lineItem.setItemTotalPrice(lineItem.itemTotalPrice(productCode, quantity));
-    logger.debug("Product Code:{}   Name:{}   Quantity :{}  Price :{}",  productCode, lineItem.getProduct().getProductName(),quantity, lineItem.getItemTotalPrice());
+    if (lineItem == null)
+    {
+      return null;
+    }
+    logger.debug("Product Code:{}   Name:{}   Quantity :{}  Price :{}", productCode, lineItem.getProduct().getProductName(), quantity, lineItem.getItemTotalPrice());
     return lineItem;
 
   }
@@ -82,7 +85,7 @@ public class Transaction
   public Tender createTender(String tenderType, double paymentAmount)
   {
 
-    logger.debug("TenderType: {}     Bill: {} ", tenderType , getTotalPrice());
+    logger.debug("TenderType: {}     Bill: {} ", tenderType, getTotalPrice());
     logger.debug("           Payment Amount: {} ", paymentAmount);
 
     tender = new Tender();
@@ -103,9 +106,11 @@ public class Transaction
 
     return tenderList;
   }
-  public void processPayment(double paymentAmount){
+
+  public void processPayment(double paymentAmount)
+  {
     this.totalPrice -= paymentAmount;
-    logger.debug("Balance : {}",this.totalPrice);
+    logger.debug("Balance : {}", this.totalPrice);
   }
 
   private void recalculateTotalPrice()
@@ -129,14 +134,14 @@ public class Transaction
           {
             double discountAmount = (lineItem.getItemTotalPrice() * promotion.getDiscount()) / 100;
             lineItem.setItemTotalPrice(lineItem.getItemTotalPrice() - discountAmount);
-            logger.debug("Promotion Applied On Product: {}",lineItem.getProduct().getProductName());
+            logger.debug("Promotion Applied On Product: {}", lineItem.getProduct().getProductName());
             logger.debug("Discount Amount :{}", discountAmount);
           }
           else if ("value".equalsIgnoreCase(promotion.getPromotionType()))
           {
             double discountAmount = promotion.getDiscount();
             lineItem.setItemTotalPrice(lineItem.getItemTotalPrice() - discountAmount);
-            logger.debug("Promotion Applied On Product: {}",lineItem.getProduct().getProductName());
+            logger.debug("Promotion Applied On Product: {}", lineItem.getProduct().getProductName());
             logger.debug("             Discount Amount: {}", discountAmount);
           }
         }

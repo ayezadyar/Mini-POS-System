@@ -11,7 +11,8 @@ class LineItemTest
   private Fixture fixture;
 
   @BeforeEach
-  public void setup(){
+  public void setup()
+  {
     fixture = new Fixture();
   }
 
@@ -19,28 +20,30 @@ class LineItemTest
   public void test_givenProductCodeAndProductQuantity_whenPassedInAMethodItemTotalPrice_thenReturnTotalPrice()
   {
     fixture.givenDataHasBeenInitialized(2);
-    fixture.whenProductCodeAndProductQuantityHasBeenPassedInAMethodItemTotalPrice(2,2);
+    fixture.whenProductCodeAndProductQuantityHasBeenPassedInAMethodItemTotalPrice(2, 2);
     fixture.thenResultShouldBeTotalPrice(160);
   }
 
   @Test
-  public void test_givenWrongProductCodeAndProductQuantity_whenPassedInAMethodItemTotalPrice_thenReturnNoProduct(){
+  public void test_givenWrongProductCodeAndProductQuantity_whenPassedInAMethodItemTotalPrice_thenReturnNoProduct()
+  {
     fixture.givenDataHasBeenInitialized(8);
-    fixture.whenWrongProductCodeAndProductQuantityHasBeenPassedInAMethodItemTotalPrice(8,2);
+    fixture.whenWrongProductCodeAndProductQuantityHasBeenPassedInAMethodItemTotalPrice(8, 2);
     fixture.thenResultShouldBeZero(0);
   }
 
   @Test
-  public void test_givenProductCodeAndNegativeProductQuantity_whenPassedInAMethodItemTotalPrice_thenReturnNoProduct(){
+  public void test_givenProductCodeAndNegativeProductQuantity_whenPassedInAMethodItemTotalPrice_thenReturnNoProduct()
+  {
     fixture.givenDataHasBeenInitialized(8);
-    fixture.whenProductCodeAndNegativeProductQuantityHasBeenPassedInAMethodItemTotalPrice(2,0);
+    fixture.whenProductCodeAndNegativeProductQuantityHasBeenPassedInAMethodItemTotalPrice(2, 0);
     fixture.thenResultShouldBeZero(0);
   }
 
 
   private static class Fixture
   {
-    private LineItem lineItemTestClass =  new LineItem();
+    private LineItem lineItemTestClass = new LineItem();
     private double result;
 
     private Product product;

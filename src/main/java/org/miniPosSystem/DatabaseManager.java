@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class DatabaseManager
 {
 
-  public HashMap<Integer, JSONObject> loadDataFromJson(String filePath,String key)
+  public HashMap<Integer, JSONObject> loadDataFromJson(String filePath, String key)
   {
     HashMap<Integer, JSONObject> dataMap = new HashMap<>();
 

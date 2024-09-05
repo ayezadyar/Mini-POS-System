@@ -136,10 +136,9 @@ class TransactionTest
   public void test_givenMultipleProductCodeWithQuantityAndValuePromotionCode_whenApplyPromotionMethodIsCalled_thenReturnExpectedPriceAfterApplyingPromotion()
   {
     fixture.givenMultipleProductsAndPromotionDataHasBeenInitialized();
-    fixture.whenApplyPromotionMethodIsCalled();
+    fixture.whenApplyPromotionMethodForMultipleProductsIsCalled();
     fixture.thenResultShouldBeAppliedPromotion(0);
   }
-
 
 
   private static class Fixture
@@ -299,16 +298,16 @@ class TransactionTest
     }
 
 
-
     public void givenPromotionDataHasBeenInitialized(int productCode, double quantity, int promotionCode)
     {
-      transactionTestClass.addLineItem(productCode,quantity);
+      transactionTestClass.addLineItem(productCode, quantity);
       promotionList = new ArrayList<>();
       promotionValue = new Promotion(promotionCode);
       promotionList.add(promotionValue);
 
     }
-    public void whenApplyPromotionMethodIsCalled()
+
+    public void whenApplyPromotionMethodForMultipleProductsIsCalled()
     {
       transactionTestClass.applyPromotions(promotionList);
 
@@ -316,6 +315,7 @@ class TransactionTest
       transactionTestClass.addTender("Card", 100);
       transactionTestClass.addTender("Voucher", 95);
     }
+
     public void thenResultShouldBeAppliedPromotion(double expectedTotal)
     {
 
@@ -325,15 +325,19 @@ class TransactionTest
 
     public void givenMultipleProductsAndPromotionDataHasBeenInitialized()
     {
-      transactionTestClass.addLineItem(1,5);
-      transactionTestClass.addLineItem(2,4);
+      transactionTestClass.addLineItem(1, 5);
+      transactionTestClass.addLineItem(2, 4);
 
       promotionList = new ArrayList<>();
       promotionValue = new Promotion(3);
       promotionList.add(promotionValue);
 
 
+    }
 
+    public void whenApplyPromotionMethodIsCalled()
+    {
+      transactionTestClass.applyPromotions(promotionList);
     }
   }
 }
