@@ -1,0 +1,16 @@
+{
+  "tenders": [
+    {
+      "Code": 1,
+      "tenderType": "Cash"
+    },
+    {
+      "Code": 2,
+      "tenderType": "Card"
+    },
+    {
+      "Code": 3,
+      "tenderType": "Voucher"
+    }
+  ]
+}
