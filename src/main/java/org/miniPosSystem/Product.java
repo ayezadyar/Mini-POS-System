@@ -42,7 +42,7 @@ public class Product
   }
 
 
-  public String getProductName(int productCode)
+  public String getProductName()
   {
     this.productsJson = productJson(productCode);
 
